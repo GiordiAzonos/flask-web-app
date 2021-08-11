@@ -40,7 +40,6 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5.5
       with: 
         image: ${{env.DOCKER_IMAGE}}
-        tags: ${{env.DOCKER_TAG }}
         registry: ${{env.ACR_HOST }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
