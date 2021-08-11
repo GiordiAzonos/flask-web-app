@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  APP_SERVICE_NAME: hello-with-flask
+  APP_SERVICE_NAME: hello-with-flask2
   DOCKER_IMAGE: flaskwebapp
   DOCKER_TAG: v1
   ACR_HOST: decisionenginecontainerregistry.azurecr.io
