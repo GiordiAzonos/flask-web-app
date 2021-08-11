@@ -8,7 +8,7 @@ on:
 env:
   APP_SERVICE_NAME: hello-with-flask2
   DOCKER_IMAGE: flaskwebapp
-  DOCKER_TAG: 1.0.0
+  DOCKER_TAG: "1.0.0"
   ACR_HOST: decisionenginecontainerregistry.azurecr.io
       
 jobs:
@@ -43,6 +43,7 @@ jobs:
         registry: ${{env.ACR_HOST }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+        tags: ${{env.DOCKER_TAG}}
         
         
     - name: Deploy to App Service
@@ -50,7 +51,7 @@ jobs:
       with:
         app-name: ${{env.APP_SERVICE_NAME}}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ steps.container-registry.outputs.tags }}'
+        images: ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ env.DOCKER_TAG }}
         
         
     - name: Azure logout
