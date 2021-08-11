@@ -44,7 +44,7 @@ jobs:
         registry: ${{env.ACR_HOST }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-        dockerfile: /code/Dockerfile
+        dockerfile: code/Dockerfile
         
         
     - name: Deploy to App Service
