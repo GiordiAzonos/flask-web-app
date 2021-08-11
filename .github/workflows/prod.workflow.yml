@@ -10,6 +10,7 @@ env:
   DOCKER_IMAGE: flaskwebapp
   DOCKER_TAG: v1
   ACR_HOST: decisionenginecontainerregistry.azurecr.io
+  TAG: v1
       
 jobs:
   build-and-deploy:
@@ -37,15 +38,15 @@ jobs:
      
     - name: Build and push container image to registry 
       run: |
-        docker build . -t ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ github.sha }}
-        docker push ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ github.sha }}
+        docker build . -t ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ env.TAG }}
+        docker push ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ env.TAG }}
         
         
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{env.APP_SERVICE_NAME}}
-        images: ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ github.sha }}'
+        images: ${{env.ACR_HOST }}/${{env.DOCKER_IMAGE}}:${{ env.TAG }}'
         
         
     - name: Azure logout
