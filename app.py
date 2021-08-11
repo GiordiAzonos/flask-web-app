@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return {"data": "Hello from an Azure Web App running on Linux!"}
+    return {"data": "Hello from an Azure Web App running on Linux! "}
     
 
 if __name__ == "__main__":
