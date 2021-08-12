@@ -8,24 +8,13 @@ on:
 env:
   APP_SERVICE_NAME: hello-with-flask2
   DOCKER_IMAGE: flaskwebapp
-  DOCKER_TAG: "1.0.0"
+  DOCKER_TAG: "1.0.1"
       
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
-    steps:
-    
-    - name: Checkout GitHub Actions
-      uses: actions/checkout@main
-        
-    - name: Login to Azure Container Registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{secrets.ACR_HOST }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-     
+    steps: 
      
     - name: Build and push container image to registry 
       id: container-registry
@@ -36,7 +25,6 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
         tags: ${{env.DOCKER_TAG}}
-        
         
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
